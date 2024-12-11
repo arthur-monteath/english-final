@@ -1,6 +1,12 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.module.js';
 
 let renderer, scene, camera, material, uniforms;
+let pages = [];
+let currentPageIndex = 0;
+
+let isMouseDown = false;
+let startMousePos = new THREE.Vector2();
+let currentMousePos = new THREE.Vector2();
 
 function init() {
   const canvas = document.getElementById('shaderCanvas');
@@ -12,17 +18,24 @@ function init() {
   camera.position.z = 1;
 
   const textureLoader = new THREE.TextureLoader();
-  const pageTexture1 = textureLoader.load('./page1.jpg');
-  const pageTexture2 = textureLoader.load('./page2.jpg');
+  // Load multiple pages
+  pages.push(textureLoader.load('./page1.jpg'));
+  pages.push(textureLoader.load('./page2.jpg'));
+  pages.push(textureLoader.load('./page3.jpg'));
+  pages.push(textureLoader.load('./page4.jpg'));
+  pages.push(textureLoader.load('./page5.jpg'));
+  // ... add more as needed
+
   const backgroundTexture = textureLoader.load('./background.jpg');
 
   uniforms = {
     iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
     iTime: { value: 0 },
-    iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
+    // iMouse = (x, y, pressed, unused)
+    iMouse: { value: new THREE.Vector4(0,0,0,0) },
     iChannel0: { value: backgroundTexture },
-    iChannel1: { value: pageTexture1 },
-    iChannel2: { value: pageTexture2 },
+    iChannel1: { value: pages[currentPageIndex] },
+    iChannel2: { value: pages[currentPageIndex+1] },
   };
 
   material = new THREE.ShaderMaterial({
@@ -108,13 +121,11 @@ function init() {
                 sampleUV.y *= -1.0;
                 sampleUV.y = 1.0 - sampleUV.y;
                 
-
                 distDiff *= 0.5;
                 normal = fakeNormal(distDiff, -0.43);
             }
             else
             {
-                
                 normal = fakeNormal(uv.x / topRight.x, 0.07);
             }
 
@@ -126,11 +137,9 @@ function init() {
 
     void mainImage( out vec4 fragColor, in vec2 fragCoord )
     {
-
         vec2 uv = fragCoord/iResolution.xy;
 
         vec3 bgCol = texture(iChannel0, uv).xyz;
-
         vec3 outCol = bgCol;
         
         vec2 bookUV = uv - BOOK_BOUNDS.xy;
@@ -144,15 +153,8 @@ function init() {
         vec2 nMouse = iMouse.xy / iResolution.xy;
         nMouse -= BOOK_BOUNDS.xy;
         nMouse /= bookSize.xy;
-        nMouse = clamp(nMouse, vec2(0.0),vec2(1.0));
-        
-        
-        if(iMouse.z <= 0.0 && iTime > 0.0)
-        {
-            nMouse = vec2((sin(iTime + 0.3) + 1.0) * 0.5,(cos(iTime * 0.5) + 1.0) * 0.5);
-        }
+        nMouse = clamp(nMouse, vec2(0.0), vec2(1.0));
         nMouse.x *= topRight.x;
-
 
         float radius = topRight.x * 0.5;
         vec2 spineTop = vec2(radius, 1.0);
@@ -161,30 +163,33 @@ function init() {
         nMouse = spineTop + normalize(spineMouse) * min(len, radius);
 
         vec2 sampleUV = sUV;
-
         vec3 normal = vec3(0,0,1);
         float halfEdgeDist = 1.0;
-        bool firstPage = pageFlip(sUV, nMouse, topRight, sampleUV, normal, halfEdgeDist);
+
+        // Only apply flipping logic when mouse is pressed
+        bool firstPage = true;
+        if (iMouse.z > 0.5) {
+            firstPage = pageFlip(sUV, nMouse, topRight, sampleUV, normal, halfEdgeDist);
+        }
 
         sampleUV.x /= topRight.x;
 
         vec3 page1 = texture(iChannel2, sampleUV).xyz;
         vec3 page2 = texture(iChannel1, sampleUV).xyz;
-        page1 = fakeSpine(page1,bookUV.x, 0.2);
-        page2 = fakeSpine(page2,sampleUV.x, 0.2);
+        page1 = fakeSpine(page1, bookUV.x, 0.2);
+        page2 = fakeSpine(page2, sampleUV.x, 0.2);
         page2 = fakeSpine(page2,  (1.0 -halfEdgeDist) * 0.5, 0.4);
 
         vec3 pageCol = firstPage ? page1 : page2;
 
+        // If mouse not pressed, use a neutral normal
         vec3 normal2 =  fakeNormal(bookUV.x > 0.5 ? bookUV.x : 1.0 - bookUV.x, 0.07);
-
         normal = firstPage ? normal2 : normal;
 
         normalize(normal);
         pageCol += min(vec3(1,1,1), specular(vec3(0,0,1), normal)) * 0.3;
 
-        if(sampleUV.x >= 0.0 && sampleUV.x <= 1.0 && sampleUV.y >= 0.0 && sampleUV.y <= 1.0)
-        {
+        if (sampleUV.x >= 0.0 && sampleUV.x <= 1.0 && sampleUV.y >= 0.0 && sampleUV.y <= 1.0) {
             outCol = pageCol;
         }
 
@@ -215,14 +220,48 @@ function onWindowResize() {
   uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
 }
 
-function onMouseMove(event) {
+window.addEventListener('mousedown', (event) => {
+  isMouseDown = true;
+  uniforms.iMouse.value.z = 1.0; // mouse pressed
+  startMousePos.set(event.clientX, window.innerHeight - event.clientY);
+});
 
-  uniforms.iMouse.value.x = event.clientX;
-  uniforms.iMouse.value.y = window.innerHeight - event.clientY;
-  
+window.addEventListener('mousemove', (event) => {
+  currentMousePos.set(event.clientX, window.innerHeight - event.clientY);
+  //if (isMouseDown) {
+    uniforms.iMouse.value.x = currentMousePos.x;
+    uniforms.iMouse.value.y = currentMousePos.y;
+  //}
+});
+
+window.addEventListener('mouseup', (event) => {
+  isMouseDown = false;
+  uniforms.iMouse.value.z = 0.0; // mouse released
+
+  // Determine if we flipped enough:
+  const dragDistance = (currentMousePos.x - startMousePos.x);
+  const threshold = window.innerWidth * 0.1; // Adjust as needed
+
+  if (dragDistance < -threshold && currentPageIndex < pages.length - 2) {
+    currentPageIndex++;
+    updatePageTextures();
+  } else if (dragDistance > threshold && currentPageIndex > 0) {
+    currentPageIndex--;
+    updatePageTextures();
+  } else {
+    // Return iMouse.xy to a neutral position (center of the book) so it stays flat
+    const neutralX = window.innerWidth * (0.5*(0.85-0.15)+0.15);
+    const neutralY = window.innerHeight * (0.5*(0.95-0.05)+0.05);
+    uniforms.iMouse.value.x = neutralX;
+    uniforms.iMouse.value.y = neutralY;
+  }
+});
+
+function updatePageTextures() {
+  const frontPage = pages[currentPageIndex] || pages[pages.length-2];
+  const nextPage = pages[currentPageIndex+1] || pages[pages.length-1];
+  uniforms.iChannel1.value = nextPage;
+  uniforms.iChannel2.value = frontPage;
 }
-
-window.addEventListener('resize', onWindowResize);
-window.addEventListener('mousemove', onMouseMove);
 
 init();
