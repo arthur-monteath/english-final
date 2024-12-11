@@ -19,11 +19,11 @@ function init() {
 
   const textureLoader = new THREE.TextureLoader();
   // Load multiple pages
-  pages.push(textureLoader.load('./page1.jpg'));
-  pages.push(textureLoader.load('./page2.jpg'));
-  pages.push(textureLoader.load('./page3.jpg'));
-  pages.push(textureLoader.load('./page4.jpg'));
-  pages.push(textureLoader.load('./page5.jpg'));
+  pages.push(textureLoader.load('./pages/page1.jpg'));
+  pages.push(textureLoader.load('./pages/page2.jpg'));
+  pages.push(textureLoader.load('./pages/page3.jpg'));
+  pages.push(textureLoader.load('./pages/page4.jpg'));
+  pages.push(textureLoader.load('./pages/page5.jpg'));
   // ... add more as needed
 
   const backgroundTexture = textureLoader.load('./background.jpg');
@@ -34,8 +34,8 @@ function init() {
     // iMouse = (x, y, pressed, unused)
     iMouse: { value: new THREE.Vector4(0,0,0,0) },
     iChannel0: { value: backgroundTexture },
-    iChannel1: { value: pages[currentPageIndex] },
-    iChannel2: { value: pages[currentPageIndex+1] },
+    iChannel1: { value: pages[currentPageIndex+1] },
+    iChannel2: { value: pages[currentPageIndex] },
   };
 
   material = new THREE.ShaderMaterial({
