@@ -8,6 +8,12 @@ let isMouseDown = false;
 let startMousePos = new THREE.Vector2();
 let currentMousePos = new THREE.Vector2();
 
+// This will hold our smoothly animated mouse position
+let lerpedMousePos = new THREE.Vector2();
+
+// Neutral position to start in (center of the book):
+let neutralX, neutralY;
+
 function init() {
   const canvas = document.getElementById('shaderCanvas');
   renderer = new THREE.WebGLRenderer({ canvas });
@@ -24,19 +30,26 @@ function init() {
   pages.push(textureLoader.load('./pages/page3.jpg'));
   pages.push(textureLoader.load('./pages/page4.jpg'));
   pages.push(textureLoader.load('./pages/page5.jpg'));
-  // ... add more as needed
 
   const backgroundTexture = textureLoader.load('./background.jpg');
 
   uniforms = {
     iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
     iTime: { value: 0 },
-    // iMouse = (x, y, pressed, unused)
     iMouse: { value: new THREE.Vector4(0,0,0,0) },
     iChannel0: { value: backgroundTexture },
     iChannel1: { value: pages[currentPageIndex+1] },
     iChannel2: { value: pages[currentPageIndex] },
   };
+
+  // Calculate initial neutral position (center of the book)
+  neutralX = window.innerWidth * (0.5*(0.85-0.15)+0.15);
+  neutralY = window.innerHeight * (0.5*(0.95-0.05)+0.05);
+
+  // Initialize the lerpedMousePos to the neutral position
+  lerpedMousePos.set(neutralX, neutralY);
+  uniforms.iMouse.value.x = lerpedMousePos.x;
+  uniforms.iMouse.value.y = lerpedMousePos.y;
 
   material = new THREE.ShaderMaterial({
     uniforms: uniforms,
@@ -166,8 +179,8 @@ function init() {
         vec3 normal = vec3(0,0,1);
         float halfEdgeDist = 1.0;
 
-        // Only apply flipping logic when mouse is pressed
         bool firstPage = true;
+        // Only flip the page if mouse is pressed
         if (iMouse.z > 0.5) {
             firstPage = pageFlip(sUV, nMouse, topRight, sampleUV, normal, halfEdgeDist);
         }
@@ -182,7 +195,6 @@ function init() {
 
         vec3 pageCol = firstPage ? page1 : page2;
 
-        // If mouse not pressed, use a neutral normal
         vec3 normal2 =  fakeNormal(bookUV.x > 0.5 ? bookUV.x : 1.0 - bookUV.x, 0.07);
         normal = firstPage ? normal2 : normal;
 
@@ -212,6 +224,17 @@ function init() {
 function animate() {
   requestAnimationFrame(animate);
   uniforms.iTime.value += 0.05;
+
+  // Lerp the mouse position towards currentMousePos:
+  // lerp factor controls speed, 0.1 = fairly smooth
+  let factor = 0.1;
+  lerpedMousePos.x += (currentMousePos.x - lerpedMousePos.x) * factor;
+  lerpedMousePos.y += (currentMousePos.y - lerpedMousePos.y) * factor;
+
+  // Update the uniforms with the lerped position
+  uniforms.iMouse.value.x = lerpedMousePos.x;
+  uniforms.iMouse.value.y = lerpedMousePos.y;
+
   renderer.render(scene, camera);
 }
 
@@ -220,18 +243,15 @@ function onWindowResize() {
   uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
 }
 
+// Record where the mouse currently is, do not update iMouse immediately
+window.addEventListener('mousemove', (event) => {
+  currentMousePos.set(event.clientX, window.innerHeight - event.clientY);
+});
+
 window.addEventListener('mousedown', (event) => {
   isMouseDown = true;
   uniforms.iMouse.value.z = 1.0; // mouse pressed
   startMousePos.set(event.clientX, window.innerHeight - event.clientY);
-});
-
-window.addEventListener('mousemove', (event) => {
-  currentMousePos.set(event.clientX, window.innerHeight - event.clientY);
-  //if (isMouseDown) {
-    uniforms.iMouse.value.x = currentMousePos.x;
-    uniforms.iMouse.value.y = currentMousePos.y;
-  //}
 });
 
 window.addEventListener('mouseup', (event) => {
@@ -249,11 +269,9 @@ window.addEventListener('mouseup', (event) => {
     currentPageIndex--;
     updatePageTextures();
   } else {
-    // Return iMouse.xy to a neutral position (center of the book) so it stays flat
-    const neutralX = window.innerWidth * (0.5*(0.85-0.15)+0.15);
-    const neutralY = window.innerHeight * (0.5*(0.95-0.05)+0.05);
-    uniforms.iMouse.value.x = neutralX;
-    uniforms.iMouse.value.y = neutralY;
+    // Lerp will bring it back to neutral over time as well.
+    // If you want it to snap back immediately, set lerpedMousePos directly:
+    currentMousePos.set(neutralX, neutralY);
   }
 });
 
