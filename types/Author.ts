@@ -7,6 +7,7 @@ export interface Author {
     excerpt: string
     analysis: string
     picture: string
+    title: string
   }
   
   
