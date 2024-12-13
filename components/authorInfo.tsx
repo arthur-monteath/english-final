@@ -17,8 +17,8 @@ export default function AuthorInfo({ author }: AuthorInfoProps) {
       />
       <div>
         <h2 className="text-3xl font-bold mb-2">{author.name}</h2>
-        <h3 className="text-xl text-gray-600 mb-4">{author.country}</h3>
-        <p className="text-gray-700">{author.bio}</p>
+        <h3 className="text-xl mb-4">{author.country}</h3>
+        <p className="">{author.bio}</p>
       </div>
     </div>
   )

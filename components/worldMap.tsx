@@ -3,6 +3,8 @@
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps"
 import { Author } from '../types/Author'
 
+const geoUrl = "/world-countries.json"
+
 interface WorldMapProps {
   authors: Author[]
   onSelectAuthor: (author: Author) => void
@@ -10,24 +12,33 @@ interface WorldMapProps {
 
 export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
   return (
-    <div className="w-full h-[60vh] bg-blue-50 rounded-lg shadow-inner overflow-hidden relative">
+    <div className="w-full h-[60vh] shadow-inner relative overflow-hidden border-y-4"
+         style={{ backgroundColor: "hsl(var(--map-water))" }}
+    >
       <ComposableMap
         projection="geoEqualEarth"
-        projectionConfig={{ scale: 160 }} 
+        projectionConfig={{ scale: 200 }}
         style={{ width: "100%", height: "100%" }}
       >
-        <Geographies geography={'/world-countries.json'}>
+        <Geographies geography={geoUrl}>
           {({ geographies }) =>
             geographies.map((geo) => (
               <Geography
-                key={geo.rsmKey}
                 geography={geo}
-                fill="#EAEAEC"
-                stroke="#D6D6DA"
                 style={{
-                  default: { outline: "none" },
-                  hover: { outline: "none" },
-                  pressed: { outline: "none" },
+                  default: {
+                    fill: "hsl(var(--map-land))",
+                    stroke: "hsl(var(--map-border))",
+                    outline: "none",
+                  },
+                  hover: {
+                    fill: "hsl(var(--map-land))",
+                    outline: "none",
+                  },
+                  pressed: {
+                    fill: "hsl(var(--map-land))",
+                    outline: "none",
+                  },
                 }}
               />
             ))
@@ -36,12 +47,13 @@ export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
         {authors.map((author) => (
           <Marker key={author.id} coordinates={author.coordinates}>
             <circle
-              r={5}
-              fill="#F00"
+              r={6}
+              fill="hsl(var(--marker-base))"
               stroke="#fff"
               strokeWidth={2}
-              className="cursor-pointer hover:scale-110 transition-transform"
+              className="cursor-pointer transition-transform hover:scale-110"
               onClick={() => onSelectAuthor(author)}
+              style={{ transition: 'all 0.2s ease-in-out' }}
             />
           </Marker>
         ))}
