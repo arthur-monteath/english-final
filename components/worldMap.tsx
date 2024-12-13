@@ -17,8 +17,8 @@ export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
     >
       <ComposableMap
         projection="geoEqualEarth"
-        projectionConfig={{ scale: 200 }}
-        style={{ width: "100%", height: "100%" }}
+        projectionConfig={{ scale: 250 }}
+        style={{ width: "110%", height: "200%" }}
       >
         <Geographies geography={geoUrl}>
           {({ geographies }) =>
@@ -47,10 +47,10 @@ export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
         {authors.map((author) => (
           <Marker key={author.id} coordinates={author.coordinates}>
             <circle
-              r={6}
+              r={3}
               fill="hsl(var(--marker-base))"
               stroke="#fff"
-              strokeWidth={2}
+              strokeWidth={1}
               className="cursor-pointer transition-transform hover:scale-110"
               onClick={() => onSelectAuthor(author)}
               style={{ transition: 'all 0.2s ease-in-out' }}

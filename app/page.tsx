@@ -95,7 +95,7 @@ export default function Home() {
   const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null)
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background mb-8">
       <h1 className="text-4xl font-bold text-center py-8" style={{ color: "var(--text-color)" }}>
         Literature Around the World
       </h1>
