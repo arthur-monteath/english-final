@@ -10,35 +10,86 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 const authors: Author[] = [
   {
     id: 1,
-    name: "Gabriel García Márquez",
-    country: "Colombia",
-    coordinates: [-74, 4],
-    bio: "Gabriel García Márquez was a Colombian novelist, short-story writer, screenwriter, and journalist, known affectionately as Gabo throughout Latin America.",
-    excerpt: "Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice.",
-    analysis: "This opening line from 'One Hundred Years of Solitude' immediately captivates the reader with its non-linear narrative structure, blending past, present, and future.",
-    picture: "/200x200.svg"
+    name: "Marcel Proust",
+    country: "France",
+    coordinates: [2.3522, 48.8566], // Paris, France
+    bio: "Marcel Proust (1871–1922) was a French novelist, critic, and essayist, best known for his monumental novel 'In Search of Lost Time'. His work explores memory, perception, and the complexity of human experience.",
+    excerpt: "“We do not receive wisdom, we must discover it for ourselves, after a journey through the wilderness which no one else can make for us, which no one can spare us, for our wisdom is the point of view from which we come at last to regard the world.”",
+    analysis: "The author, through a very direct tone, does what seems like giving a lesson. He talks about wisdom, and specifically how you need to act in order to find it, and how if you don’t look for it, it will not come your way. Then, he proceeds to talk about why one should even attempt to get into such pursuit—of wisdom; he does so by stating how the way in which we last regard the world is completely linked to our wisdom, both its presence and absence. As for the literary devices used by the author there is a clear metaphor in the usage of “wilderness” when referring to life. Then, there is a usage of parallelism, as the author writes “no one else can make for us, (...) no one can spare us.” Further reinforcing the lonely nature of acquiring wisdom. In my perception it’s a well rounded text, not only effectively conveying its message but doing so with good language and style. I think the message is great, as I’ve found myself attempting to transfer wisdom before and sadly achieving no result or change.",
+    picture: "/marcel-proust.png"
   },
   {
     id: 2,
-    name: "Haruki Murakami",
-    country: "Japan",
-    coordinates: [139, 35],
-    bio: "Haruki Murakami is a Japanese writer. His novels, essays, and short stories have been bestsellers in Japan as well as internationally.",
-    excerpt: "The wind-up bird Chronicle",
-    analysis: "Murakami's surrealist style often blends the mundane with the extraordinary, creating a dreamlike atmosphere that challenges readers' perceptions of reality.",
-    picture: "/200x200.svg"
+    name: "John Dos Passos",
+    country: "United States",
+    coordinates: [-74.0059, 40.7128], // New York City, USA
+    bio: "John Dos Passos (1896–1970) was an American novelist and artist, part of the Lost Generation. He is best known for the U.S.A. trilogy, which combined fiction, biography, and newsreel techniques.",
+    excerpt: "“The young man walks by himself, fast but not fast enough, far but not far enough (faces slide out of sight, talk trails into tattered scraps, footsteps tap fainter in alleys); he must catch the last subway, the streetcar, the bus, run up the gangplanks of all the steamboats, register at all the hotels, work in the cities, answer the want ads, learn the trades, take up the jobs, live in all the boarding houses, sleep in all the beds. One bed is not enough, one job is not enough, one life is not enough. At night, head swimming with wants, he walks by himself alone.”",
+    analysis: "The author tries to convey what it feels like to be in busy, striving cities. He attempts to make the reader feel how lonely an individual can be amongst a radically industrialized environment, filled with people each with their own goals to strive for. John employs alliteration to make the tone feel even more crowded and overwhelming, like it is coming back at you again and again. This further instigates the sense of hunger and starvation that is brought by such strong capitalistic societies, where you are always looking for something–getting money to buy the next thing. Furthermore, the heavily fragmented imagery attempts to insert even more the alienation and isolation of urban life into the text, excerpts like “faces slide out of sight” and “talk trails into tattered scraps.” I believe the text is able to effectively convey its message, truly making me feel what I assume I was intended to by the author. Overall, the portrayal is haunting, definitely inciting a sense of empathy for those lost in the unforgiving rhythm of modernity.",
+    picture: "/john-passos.png"
   },
   {
     id: 3,
-    name: "Chimamanda Ngozi Adichie",
-    country: "Nigeria",
-    coordinates: [8, 9],
-    bio: "Chimamanda Ngozi Adichie is a Nigerian writer whose works range from novels to short stories to nonfiction.",
-    excerpt: "The thing about cross-cultural relationships is that you spend so much time explaining. My ex-boyfriend and I spent a lot of time explaining.",
-    analysis: "This excerpt from 'Americanah' highlights Adichie's keen observations on cultural differences and the complexities of relationships across different backgrounds.",
-    picture: "/200x200.svg"
+    name: "Johann Wolfgang von Goethe",
+    country: "Germany",
+    coordinates: [8.6821, 50.1109], // Frankfurt, Germany
+    bio: "Johann Wolfgang von Goethe (1749–1832) was a German writer and statesman. His works include poetry, plays, and novels, and he is considered one of the greatest figures in Western literature.",
+    excerpt: "“You are aware of only one unrest; Oh, never learn to know the other! Two souls, alas, are dwelling in my breast, And one is striving to forsake its brother. Unto the world in grossly loving zest, With clinging tendrils, one adheres; The other rises forcibly in quest, Of rarefied ancestral spheres. If there be spirits in the air, That hold their sway between the earth and sky, Descend out of the golden vapors there, And sweep me into iridescent life.”",
+    analysis: "Through this excerpt, the author tries to convey an idea of duality, of having two desires inside oneself, one of materialism and the other of transcendence. The author does so through the usage of multiple metaphors, always within his especially romantic language. For instance, the “two souls” in his breast symbolize this internal struggle, with one adhering to the “grossly loving zest” of earthly pleasures and the other striving for “rarefied ancestral spheres.” This duality could be contemporaneously assimilated to Carl Jung’s shadow/persona concept in how one of the souls mostly end up surfacing to others. The invocation of “spirits in the air” further adds to the mystical layer, which blends neatly the “earthly” concerns with the spiritual longing. In general, the text is very interesting, full of emotion and elusive language. I especially enjoy this metaphor of inner conflict and disembodied duality of consciousnesses.",
+    picture: "/johann-goethe.png"
+  },
+  {
+    id: 4,
+    name: "James Joyce",
+    country: "Ireland",
+    coordinates: [-6.2603, 53.3498], // Dublin, Ireland
+    bio: "James Joyce (1882–1941) was an Irish novelist, short story writer, and poet. He is best known for 'Ulysses', a landmark modernist work that has influenced countless authors.",
+    excerpt: "“A few light taps upon the pane made him turn to the window. It had begun to snow again. He watched sleepily the flakes, silver and dark, falling obliquely against the lamplight. The time had come for him to set out on his journey westward. Yes, the newspapers were right: snow was general all over Ireland. It was falling on every part of the dark central plain, on the treeless hills, falling softly upon the Bog of Allen and, farther westward, softly falling into the dark mutinous Shannon waves. It was falling, too, upon every part of the lonely churchyard on the hill where Michael Furey lay buried. It lay thickly drifted on the crooked crosses and headstones, on the spears of the little gate, on the barren thorns. His soul swooned slowly as he heard the snow falling faintly through the universe and faintly falling, like the descent of their last end, upon all the living and the dead.”",
+    analysis: "The author here uses heavy symbolism, using the object of snow as a symbol for death. He has quite a morbid tone, being very reflective of life’s transience. The imagery of the snow falling “softly” creates a sort of connection between the living and the dead; a unison of mortality. Joyce has a really good use of descriptive language, with characteristics like “silver and dark flakes,” and “snow falling faintly through the universe,” really enhancing the somber tone of the excerpt. The passage captures the inevitability of death, offering a certain introspection through the evocative imagery and poetic rhythm. I think what makes the text especially meaningful is the way it blends something that seems so personal, but yet is so universal. Reflecting how interconnected are human experiences, even in death.",
+    picture: "/james-joyce.png"
+  },
+  {
+    id: 5,
+    name: "Mary Shelley",
+    country: "England",
+    coordinates: [-0.1276, 51.5074], // London, UK
+    bio: "Mary Shelley (1797–1851) was an English novelist who wrote the Gothic novel 'Frankenstein', a cornerstone of science fiction and horror literature.",
+    excerpt: "“Hateful day when I received life!' I exclaimed in agony. 'Accursed creator! Why did you form a monster so hideous that even you turned from me in disgust? God, in pity, made man beautiful and alluring, after his own image; but my form is a filthy type of yours, more horrid even from the very resemblance. Satan had his companions, fellow-devils, to admire and encourage him; but I am solitary and abhorred.'”",
+    analysis: "In this excerpt, Shelley exposes the creature’s psyche, she makes the monster’s self-loathing clear and direct. She captures the agony the creature feels, the pure anguish at the simple act of existing, “Hateful day when I received life!” Still in the excerpt, there is a well executed juxtaposition, where Shelley compares the divine beauty of God’s creations to the grotesque form of the monster. This stark contrast evidences the creature’s torment, born without consent and subjected to a life of solitude and scorn. The way Shelley brings Satan to comparison creates a bitter sense of irony, as although both were outcasts, at least Satan found company among the damned. Nevertheless, the main theme with this excerpt is not really painting the creature as a monstrosity, but instead, to highlight failures within the human race: the inability to see past appearance, the fear put on one another. Overall, the passage serves to transmit an ache of the soul, the need for acceptance and the desolation that follows its denial.",
+    picture: "/mary-shelley.png"
+  },
+  {
+    id: 6,
+    name: "William Shakespeare",
+    country: "England",
+    coordinates: [-1.7017, 52.1917], // Stratford-upon-Avon, UK
+    bio: "William Shakespeare (1564–1616) was an English playwright and poet, widely regarded as the greatest writer in the English language. His works span tragedy, comedy, and history.",
+    excerpt: "“To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer, The slings and arrows of outrageous fortune, Or to take arms against a sea of troubles, And by opposing end them...”",
+    analysis: "I find this quote to be very iconic, in the soliloquy Hamlet weighs enduring life’s suffering against the uncertainty of death. His contemplation of “the slings and arrows of outrageous fortune” probably talks about trials faced in life–maybe related to wealth–framed as external assaults on the self, placing oneself in the center of the world. As he brings the imagery of “sea of troubles” he emphasizes even more the tremendous scale at which the individual is suffering in, drowning in this expanding pain. The phrase “To sleep, perchance to dream” brings about this fleeting hope for peace that is yet darkened by the fear of the unknown. Hamlet’s inability to choose is further perceived through the way the rhythm of the soliloquy changes, being a mirror of what his mind is going through, a back and forth between the alternatives for his future.",
+    picture: "/william-shakespeare.png"
+  },
+  {
+    id: 7,
+    name: "Dylan Thomas",
+    country: "Wales",
+    coordinates: [-3.945, 51.6214], // Swansea, Wales
+    bio: "Dylan Thomas (1914–1953) was a Welsh poet and writer whose works are noted for their lyrical intensity and emotional fervor. He wrote 'Do not go gentle into that good night', one of his best-known poems.",
+    excerpt: "“Do not go gentle into that good night, Old age should burn and rave at close of day; Rage, rage against the dying of the light...”",
+    analysis: "In this poem, Dylan Thomas uses the “Good Night” as an euphemism for death. Throughout the poem he maintains a pretty consistent desperate tone as he steadily brings about different situations where one should not go gentle into that good night; where one should resist dying. The repetitive wording of “Rage, rage against the dying of the light” further adds to how urgent the author considers this fight and how much passion/violence he thinks one should allocate towards the goal. Thomas categorizes “wise men,” “good men,” “wild men,” and “grave men”—each facing regret, realization; all having some sort of resistance toward giving into that good night. The poem’s cyclical nature seems to convey and reinforce the inevitability of death, coming to you, your friends, again and again. This refrain ties together the emotional urgency and thematic core of the poem, urging defiance in the face of inevitability. Overall, the poem just follows Thomas’ impassioned plea for resistance against death.",
+    picture: "/dylan-thomas.png"
+  },
+  {
+    id: 8,
+    name: "Tennessee Williams",
+    country: "United States",
+    coordinates: [-90.0715, 29.9511], // New Orleans, LA
+    bio: "Tennessee Williams (1911–1983) was an American playwright, author of many stage classics. He often focused on the emotional struggles of characters in the American South.",
+    excerpt: "“He was a boy, just a boy, when I was a very young girl. When I was sixteen, I made the discovery - love. All at once and much, much too completely. It was like you suddenly turned a blinding light on something that had always been half in shadow...”",
+    analysis: "The character here is, in a very resentful tone, confessing about her experience with a man. First, to describe how strong and sudden the love he gave to her was she uses a metaphor of light and shadow, how before she was in shadow (indicating a lack of love) and how his love came to her as a blinding light. Next, she reveals some curious aspects about the boy’s personality, to do so she uses contrasting characteristics by highlighting his nervousness, softness, and tenderness. Then, she gets to the conclusion of his effeminate nature and homosexuality. She then begins blaming herself for not noticing, and through my analysis I conclude that the reason she does so is not only because of how he was forced into passing as straight due to society, but also due to the fact that she knew he would’ve done that anyways and to anyone; it is nothing personal against her. In the end she brings a metaphor of quicksand, for how they—together—fell into depression. The metaphor evokes an inexorable descent into despair, illustrating how their mutual dependence became a consuming force, dragging them into their emotional abyss. Additionally, it exposes how tragic the weight of societal expectations and values can be, which in their case ends up twisting their connection, building a shared burden of guilt and regret, and making their fall as inevitable as it was devastating.",
+    picture: "/tennessee-williams.png"
   }
 ]
+
 
 export default function Home() {
   const [selectedAuthor, setSelectedAuthor] = useState<Author | null>(null)
