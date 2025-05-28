@@ -87,7 +87,95 @@ const authors: Author[] = [
     excerpt: "“He was a boy, just a boy, when I was a very young girl. When I was sixteen, I made the discovery - love. All at once and much, much too completely. It was like you suddenly turned a blinding light on something that had always been half in shadow, that's how it struck the world for me. But I was unlucky. Deluded. There was something different about the boy, a nervousness, a softness and tenderness which wasn’t like a man’s, although he wasn’t the least bit effeminate looking–still–that thing was there. He came to me for help. I didn't know that. I didn't find out anything till after our marriage when we'd run away and come back and all I knew was I'd failed him in some mysterious way and wasn't able to give the help he needed but couldn't speak of! He was in the quicksands and clutching at me–but I wasn’t holding him out, I was slipping in with him!”",
     analysis: "The character here is, in a very resentful tone, confessing about her experience with a man. First, to describe how strong and sudden the love he gave to her was she uses a metaphor of light and shadow, how before she was in shadow (indicating a lack of love) and how his love came to her as a blinding light. Next, she reveals some curious aspects about the boy’s personality, to do so she uses contrasting characteristics by highlighting his nervousness, softness, and tenderness. Then, she gets to the conclusion of his effeminate nature and homosexuality. She then begins blaming herself for not noticing, and through my analysis I conclude that the reason she does so is not only because of how he was forced into passing as straight due to society, but also due to the fact that she knew he would’ve done that anyways and to anyone; it is nothing personal against her. In the end she brings a metaphor of quicksand, for how they—together—fell into depression. The metaphor evokes an inexorable descent into despair, illustrating how their mutual dependence became a consuming force, dragging them into their emotional abyss. Additionally, it exposes how tragic the weight of societal expectations and values can be, which in their case ends up twisting their connection, building a shared burden of guilt and regret, and making their fall as inevitable as it was devastating.",
     picture: "/tennessee-williams.png", title: "A Streetcar Named Desire"
-  }
+  },
+  {
+    "id": 9,
+    "name": "T.S. Eliot",
+    "country": "United Kingdom",
+    "coordinates": [-0.1276, 51.5074],
+    "bio": "T.S. Eliot (1888–1965) was a British-American poet, essayist, and playwright, widely regarded as one of the most important figures in modernist literature. His works often grapple with themes of time, memory, and spiritual desolation.",
+    "excerpt": "Time present and time past / Are both perhaps present in time future / And time future contained in time past...",
+    "analysis": "Eliot explores the unbearable tension between how time loops back and yet is unrecoverable. The repetition lulls us into a trance, while enjambment makes thoughts tumble, mirroring how memory itself is an echo—both a guide and a ghost. His reflection on unredeemable time resonates today, in an age of algorithmic predictions and digital archives, where the line between memory and presence blurs disturbingly.",
+    "picture": "/ts-eliot.jpg",
+    "title": "Four Quartets"
+},
+{
+    "id": 10,
+    "name": "Anonymous Egyptian Poet",
+    "country": "Egypt",
+    "coordinates": [31.2357, 30.0444],
+    "bio": "An anonymous poet from the Ramesside Period (1300-1100 BC), whose poem 'I Was Simply Off to See Nefrus' offers a vivid, personal glimpse into ancient Egyptian emotional life.",
+    "excerpt": "I was simply off to see Nefrus my friend / Just to sit and chat at her place (about men)...",
+    "analysis": "This poem captures the raw push-pull of desire and fear, as the speaker begs Hathor to let her escape the gaze of Mehy. The apostrophes and mythic allusions magnify how overwhelming such feelings are. Strikingly modern in its exploration of being seen and judged, it echoes the contemporary experience of navigating public and private selves, particularly for women in surveilled societies.",
+    "picture": "/egyptian.jpg",
+    "title": "I Was Simply Off to See Nefrus"
+},
+{
+    "id": 11,
+    "name": "William Shakespeare",
+    "country": "England",
+    "coordinates": [-1.7017, 52.1917],
+    "bio": "William Shakespeare (1564–1616) was an English playwright and poet, widely regarded as the greatest writer in the English language. His works span tragedy, comedy, and history.",
+    "excerpt": "JULIET: This bud of love, by summer’s ripening breath, May prove a beauteous flower...",
+    "analysis": "Shakespeare’s metaphor of love as a 'bud' captures the paradox of love's immediacy and its need to grow. The stichomythia between Romeo and Juliet shows love as negotiation, not certainty. Its lyrical excess asks whether true connection requires slow cultivation—a question that lingers in an era of instant gratification.",
+    "picture": "/shakespeare.jpg",
+    "title": "Romeo and Juliet"
+},
+{
+    "id": 12,
+    "name": "David Foster Wallace",
+    "country": "United States",
+    "coordinates": [-86.1581, 39.7684],
+    "bio": "David Foster Wallace (1962–2008) was an American writer and essayist, known for his postmodern and metafictional works exploring consciousness, addiction, and the human condition.",
+    "excerpt": "In the day-to-day trenches of adult life, there is actually no such thing as atheism...",
+    "analysis": "Wallace argues that everyone 'worships' something, whether consciously or not. His casual tone masks a deep critique of consumerism and modern idolatry. The anaphora-driven rhythm makes his point inescapable: absent conscious choice, we risk being 'eaten alive' by the things we uncritically serve. Especially prescient now, when algorithms curate desires without our consent.",
+    "picture": "/david-foster-wallace.jpg",
+    "title": "This is Water"
+},
+{
+    "id": 13,
+    "name": "Fyodor Dostoevsky",
+    "country": "Russia",
+    "coordinates": [30.3351, 59.9343],
+    "bio": "Fyodor Dostoevsky (1821–1881) was a Russian novelist, philosopher, and journalist. His works probe the psychological depths of human nature and grapple with existential and moral dilemmas.",
+    "excerpt": "Now I ask you: what can be expected of man as a being endowed with such strange qualities?...",
+    "analysis": "Dostoevsky lays bare the human tendency to sabotage comfort just to assert autonomy. His hyperbolic 'risking his gingerbread' undercuts utilitarian logic with irony. He mocks the idea that humans seek only rational self-interest, instead framing irrational chaos as the ultimate declaration of freedom—a message that resonates amid today's obsession with optimization.",
+    "picture": "/dostoevsky.jpg",
+    "title": "Notes from Underground"
+},
+{
+    "id": 14,
+    "name": "Yukio Mishima",
+    "country": "Japan",
+    "coordinates": [139.6917, 35.6895],
+    "bio": "Yukio Mishima (1925–1970) was a Japanese author, playwright, and nationalist, renowned for his exploration of beauty, death, and the conflict between modernity and tradition.",
+    "excerpt": "Dreams, memories, the sacred—they are all alike in that they are beyond our grasp...",
+    "analysis": "Mishima meditates on how sanctity emerges from unattainability. His paradox—'His touch defiles… yet he contains the source of miracles'—encapsulates the human dilemma of desire and reverence. The elevated language amplifies this metaphysical inquiry, now even more piercing in a digital age of constant availability, where the sacred risks being stripped of its mystique.",
+    "picture": "/mishima.jpg",
+    "title": "Spring Snow"
+},
+{
+    "id": 15,
+    "name": "William Butler Yeats",
+    "country": "Ireland",
+    "coordinates": [-6.2603, 53.3498],
+    "bio": "William Butler Yeats (1865–1939) was an Irish poet and dramatist, a key figure in 20th-century literature and a driving force behind the Irish Literary Revival.",
+    "excerpt": "Turning and turning in the widening gyre / The falcon cannot hear the falconer...",
+    "analysis": "Yeats captures a vision of societal collapse, twisting the Second Coming into an ominous inevitability. His fractured syntax mirrors a world unraveling, while mythic imagery like the 'rough beast' hints at archetypal fears. The poem resonates in an era marked by global crises, tapping into a collective unconscious bracing for what slouches next toward our crumbling 'Bethlehems'.",
+    "picture": "/yeats.jpg",
+    "title": "The Second Coming"
+},
+{
+    "id": 16,
+    "name": "Hannah Arendt",
+    "country": "Germany",
+    "coordinates": [13.405, 52.52],
+    "bio": "Hannah Arendt (1906–1975) was a German-American philosopher and political theorist known for her works on totalitarianism, authority, and the nature of evil.",
+    "excerpt": "The ideal subject of totalitarian rule is not the convinced Nazi or the convinced Communist...",
+    "analysis": "Arendt dissects how totalitarianism thrives when distinctions between fact and fiction erode. Her clinical yet urgent tone reveals a society numbed by cynicism, primed for manipulation. Especially relevant in today's digital disinformation landscape, her analysis warns how apathy and exhaustion become fertile ground for authoritarian control, as truth itself dissolves into quicksand.",
+    "picture": "/arendt.jpg",
+    "title": "The Origins of Totalitarianism"
+}
 ]
 
 
