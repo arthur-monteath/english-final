@@ -18,9 +18,8 @@ interface WorldMapProps {
 }
 
 export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
-  // centre and zoom are controlled so the component can re-render in sync
   const [view, setView] = useState<{ coordinates: [number, number]; zoom: number }>({
-    coordinates: [0, 0], // [lng, lat]
+    coordinates: [0, 0], // Center at [longitude, latitude]
     zoom: 1,
   })
 
@@ -38,8 +37,8 @@ export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
           center={view.coordinates}
           zoom={view.zoom}
           minZoom={0.8}
-          maxZoom={4}
-          onMoveEnd={(pos) => setView(pos)}   // keeps state after drag / scroll
+          maxZoom={10}
+          onMoveEnd={(pos) => setView(pos)}
         >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
@@ -64,10 +63,10 @@ export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
           {authors.map((author) => (
             <Marker key={author.id} coordinates={author.coordinates}>
               <circle
-                r={3}
+                r={3/view.zoom}
                 fill="hsl(var(--marker-base))"
                 stroke="#fff"
-                strokeWidth={1}
+                strokeWidth={1/view.zoom}
                 className="cursor-pointer transition-transform hover:scale-110"
                 onClick={() => onSelectAuthor(author)}
               />
