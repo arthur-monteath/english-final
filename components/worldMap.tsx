@@ -1,9 +1,16 @@
 'use client'
 
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps"
+import { useState } from 'react'
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+  ZoomableGroup,
+} from 'react-simple-maps'
 import { Author } from '../types/Author'
 
-const geoUrl = "/world-countries.json"
+const geoUrl = '/world-countries.json'
 
 interface WorldMapProps {
   authors: Author[]
@@ -11,52 +18,62 @@ interface WorldMapProps {
 }
 
 export default function WorldMap({ authors, onSelectAuthor }: WorldMapProps) {
+  // centre and zoom are controlled so the component can re-render in sync
+  const [view, setView] = useState<{ coordinates: [number, number]; zoom: number }>({
+    coordinates: [0, 0], // [lng, lat]
+    zoom: 1,
+  })
+
   return (
-    <div className="w-full h-[60vh] shadow-inner relative overflow-hidden border-y-4"
-         style={{ backgroundColor: "hsl(var(--map-water))" }}
+    <div
+      className="w-full h-[60vh] shadow-inner relative overflow-hidden border-y-4"
+      style={{ backgroundColor: 'hsl(var(--map-water))' }}
     >
       <ComposableMap
         projection="geoEqualEarth"
         projectionConfig={{ scale: 250 }}
-        style={{ width: "110%", height: "200%" }}
+        style={{ width: '110%', height: '200%' }}
       >
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => (
-              <Geography
-                geography={geo}
-                style={{
-                  default: {
-                    fill: "hsl(var(--map-land))",
-                    stroke: "hsl(var(--map-border))",
-                    outline: "none",
-                  },
-                  hover: {
-                    fill: "hsl(var(--map-land))",
-                    outline: "none",
-                  },
-                  pressed: {
-                    fill: "hsl(var(--map-land))",
-                    outline: "none",
-                  },
-                }}
+        <ZoomableGroup
+          center={view.coordinates}
+          zoom={view.zoom}
+          minZoom={0.8}
+          maxZoom={4}
+          onMoveEnd={(pos) => setView(pos)}   // keeps state after drag / scroll
+        >
+          <Geographies geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  style={{
+                    default: {
+                      fill: 'hsl(var(--map-land))',
+                      stroke: 'hsl(var(--map-border))',
+                      outline: 'none',
+                    },
+                    hover: { fill: 'hsl(var(--map-land))' },
+                    pressed: { fill: 'hsl(var(--map-land))' },
+                  }}
+                />
+              ))
+            }
+          </Geographies>
+
+          {authors.map((author) => (
+            <Marker key={author.id} coordinates={author.coordinates}>
+              <circle
+                r={3}
+                fill="hsl(var(--marker-base))"
+                stroke="#fff"
+                strokeWidth={1}
+                className="cursor-pointer transition-transform hover:scale-110"
+                onClick={() => onSelectAuthor(author)}
               />
-            ))
-          }
-        </Geographies>
-        {authors.map((author) => (
-          <Marker key={author.id} coordinates={author.coordinates}>
-            <circle
-              r={3}
-              fill="hsl(var(--marker-base))"
-              stroke="#fff"
-              strokeWidth={1}
-              className="cursor-pointer transition-transform hover:scale-110"
-              onClick={() => onSelectAuthor(author)}
-              style={{ transition: 'all 0.2s ease-in-out' }}
-            />
-          </Marker>
-        ))}
+            </Marker>
+          ))}
+        </ZoomableGroup>
       </ComposableMap>
     </div>
   )
